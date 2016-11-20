@@ -556,7 +556,11 @@ class Heckle < SexpProcessor
       next unless [:class, :module].include? node.first
       next unless node[1] == current
 
-      block = node.detect {|s| Sexp === s && s[0] == :scope }[1]
+      if node.first == :class
+        block = s(:block, *node[3..-1])
+      else
+        block = s(:block, *node[2..-1])
+      end
 
       if nesting.empty?
         return sexp if method_name.nil?
