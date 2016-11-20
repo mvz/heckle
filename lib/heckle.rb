@@ -290,11 +290,7 @@ class Heckle < SexpProcessor
     args = process args unless args == 0
     body = process exp.shift
 
-    mutate_node s(:iter, call, args, body)
-  end
-
-  def mutate_iter(exp)
-    s(:nil)
+    s(:iter, call, args, body)
   end
 
   def process_asgn(type, exp)

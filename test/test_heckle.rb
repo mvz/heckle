@@ -94,7 +94,6 @@ class TestHeckle < HeckleTestCase
       :dasgn => [],      # no dasgns here
       :dasgn_curr => [], # no dasgn_currs here
       :iasgn => [],      # no iasgns here
-      :iter => [],
       :gasgn => [],      # no gasgns here
       :lasgn => [s(:lasgn, :i, s(:lit, 1)),
                  s(:lasgn, :i, s(:call, s(:lvar, :i), :+, s(:lit, 1)))],
