@@ -20,9 +20,9 @@ Hoe.spec 'heckle' do
 
   clean_globs << File.expand_path("~/.ruby_inline")
 
-  dependency 'ruby_parser', '~> 2.3.1'
-  dependency 'ruby2ruby', '~> 1.3.0'
-  dependency 'ZenTest',   '~> 4.7.0'
+  dependency 'ruby_parser', '~> 3.8.3'
+  dependency 'ruby2ruby', '~> 2.3.1'
+  dependency 'ZenTest',   '~> 4.11.1'
 
   self.test_globs = ["test/test_*.rb"]
 end
