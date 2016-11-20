@@ -611,7 +611,7 @@ class TestHeckleCallblock < HeckleTestCase
                   s(:args),
                   s(:iter,
                     s(:call, s(:call, nil, :x), :y),
-                    nil,
+                    0,
                     s(:lit, 1)))
 
     assert_equal expected, @heckler.current_tree
@@ -622,7 +622,7 @@ class TestHeckleCallblock < HeckleTestCase
         s(:args),
         s(:iter,
           s(:call, s(:nil), :y),
-          nil,
+          0,
           s(:lit, 1)))
     ]
 
