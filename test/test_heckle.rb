@@ -84,6 +84,7 @@ class TestHeckle < HeckleTestCase
   def test_should_grab_mutatees_from_method
     # expected is from tree of uses_while
     expected = {
+      :args => [s(:args)],
       :call => [s(:call, s(:lvar, :i), :<, s(:lit, 10)),
                 s(:call, s(:lvar, :i), :+, s(:lit, 1)),
                 s(:call, nil, :some_func), # FIX: why added?
@@ -128,7 +129,7 @@ class TestHeckle < HeckleTestCase
   end
 
   def test_should_count_mutatees_left
-    assert_equal 17, @heckler.mutations_left # FIX WHY?!?
+    assert_equal 18, @heckler.mutations_left # FIX WHY?!?
   end
 
   def test_reset
@@ -833,7 +834,7 @@ end
 class TestHeckleIter < HeckleTestCase
   def setup
     @method_heckled = "uses_iter"
-    @nodes = [ :call, :lasgn ]
+    @nodes = [ :call, :lasgn, :args ]
     super
   end
 

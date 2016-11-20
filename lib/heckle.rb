@@ -293,6 +293,24 @@ class Heckle < SexpProcessor
     s(:iter, call, args, body)
   end
 
+  def process_args(args)
+    return s(:args) if args.empty?
+    new_args = []
+    while !args.empty?
+      new_args << args.shift
+    end
+    mutate_node s(:args, *new_args)
+  end
+
+  def mutate_args(node)
+    node.shift
+    new_args = []
+    while node.shift
+      new_args << :_heckle_dummy
+    end
+    s(:args, *new_args)
+  end
+
   def process_asgn(type, exp)
     var = exp.shift
     if exp.empty? then
