@@ -286,7 +286,8 @@ class Heckle < SexpProcessor
 
   def process_iter(exp)
     call = process exp.shift
-    args = process exp.shift
+    args = exp.shift
+    args = process args unless args == 0
     body = process exp.shift
 
     mutate_node s(:iter, call, args, body)
