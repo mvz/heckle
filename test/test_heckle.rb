@@ -844,7 +844,7 @@ class TestHeckleIter < HeckleTestCase
                   s(:lasgn, :x, s(:array, s(:lit, 1), s(:lit, 2), s(:lit, 3))),
                   s(:iter,
                     s(:call, s(:lvar, :x), :each),
-                    s(:lasgn, :y), s(:lvar, :y)))
+                    s(:args, :y), s(:lvar, :y)))
 
     assert_equal expected, @heckler.current_tree
   end
@@ -856,13 +856,13 @@ class TestHeckleIter < HeckleTestCase
         s(:lasgn, :x, s(:nil)),
         s(:iter,
           s(:call, s(:lvar, :x), :each),
-          s(:lasgn, :y), s(:lvar, :y))),
+          s(:args, :y), s(:lvar, :y))),
       s(:defn, :uses_iter,
         s(:args),
         s(:lasgn, :x, s(:array, s(:lit, 1), s(:lit, 2), s(:lit, 3))),
         s(:iter,
           s(:call, s(:lvar, :x), :each),
-          s(:lasgn, :_heckle_dummy), s(:lvar, :y))),
+          s(:args, :_heckle_dummy), s(:lvar, :y))),
     ]
 
 
