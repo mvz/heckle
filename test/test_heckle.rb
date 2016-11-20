@@ -24,7 +24,7 @@ class TestHeckler < Heckle
   end
 end
 
-class HeckleTestCase < MiniTest::Unit::TestCase
+class HeckleTestCase < Minitest::Test
   def setup
     @klass ||= "HeckleDummy"
     @nodes ||= Heckle::MUTATABLE_NODES

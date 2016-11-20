@@ -7,7 +7,7 @@ require 'heckle_runner'
 # * should raise an exception if the method can't be found
 # * Tests for option parsing.
 
-class TestHeckleRunnerRun < MiniTest::Unit::TestCase
+class TestHeckleRunnerRun < Minitest::Test
   @@dummy_dir = File.expand_path('test/fixtures/minitest_project')
   dummy_lib = File.join(@@dummy_dir, 'lib')
 
