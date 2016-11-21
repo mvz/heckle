@@ -1,30 +1,9 @@
-# -*- ruby -*-
+require 'bundler/gem_tasks'
+require 'rake/testtask'
 
-require 'rubygems'
-require 'hoe'
-
-Hoe.add_include_dirs("../../RubyInline/dev/lib",
-                     "../../ruby2ruby/1.3.1/lib",
-                     "../../ZenTest/dev/lib",
-                     "../../sexp_processor/dev/lib",
-                     "../../ruby_parser/2.3.1/lib",
-                     "lib")
-
-Hoe.plugin :seattlerb
-
-Hoe.spec 'heckle' do
-  developer 'Ryan Davis',   'ryand-ruby@zenspider.com'
-  developer 'Pete Higgins', 'pete@peterhiggins.org'
-  # developer 'Eric Hodel',  'drbrain@segment7.net'
-  # developer 'Kevin Clark', 'kevin.clark@gmail.com'
-
-  clean_globs << File.expand_path("~/.ruby_inline")
-
-  dependency 'ruby_parser', '~> 3.8.3'
-  dependency 'ruby2ruby', '~> 2.3.1'
-  dependency 'ZenTest',   '~> 4.11.1'
-
-  self.test_globs = ["test/test_*.rb"]
+Rake::TestTask.new(:test) do |t|
+  t.libs = ['lib']
+  t.ruby_opts += ["-w -Itest"]
 end
 
-# vim: syntax=ruby
+task :default => :test
