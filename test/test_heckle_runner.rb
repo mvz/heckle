@@ -19,35 +19,35 @@ class TestHeckleRunnerRun < Minitest::Test
     @old_pwd = Dir.pwd
     Dir.chdir @@dummy_dir
 
-    # See MiniTest's test/minitest/metametameta.rb
-    @output = StringIO.new("")
-    MiniTest::Unit::TestCase.reset
-    MiniTest::Unit.output = @output
+    Minitest::Runnable.reset
   end
 
   def teardown
     super
     Dir.chdir @old_pwd
-    MiniTest::Unit.output = $stdout
 
-    MiniTest::Unit::TestCase.test_suites.each do |test|
+    Minitest::Runnable.runnables.each do |test|
       Object.send :remove_const, test.to_s.to_sym
     end
   end
 
   def test_run_with_full_coverage
+    result = nil
     out, _ = capture_io do
-      HeckleRunner.run %w[Doubler double]
+      result = HeckleRunner.run %w[Doubler double]
     end
 
+    assert result
     assert_match %r{No mutants survived.}, out
   end
 
   def test_run_with_partial_coverage
+    result = true
     out, _ = capture_io do
-      HeckleRunner.run %w[Doubler double --tests test/test_doubler_with_a_number.rb]
+     result = HeckleRunner.run %w[Doubler double --tests test/test_doubler_with_a_number.rb]
     end
 
+    refute result
     assert_match %r{The following mutations didn't cause test failures:}, out
     refute_match %{No mutants survived.}, out
   end
