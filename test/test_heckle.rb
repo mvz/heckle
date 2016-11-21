@@ -1,3 +1,4 @@
+require 'minitest'
 require 'fixtures/heckle_dummy'
 require 'heckle'
 
