@@ -2,7 +2,7 @@ require 'minitest'
 require 'fixtures/heckle_dummy'
 require 'heckle'
 
-class TestHeckler < Heckle
+class TestHeckler < Heckle::Heckler
   def rand(*args)
     5
   end
@@ -28,7 +28,7 @@ end
 class HeckleTestCase < Minitest::Test
   def setup
     @klass ||= "HeckleDummy"
-    @nodes ||= Heckle::MUTATABLE_NODES
+    @nodes ||= Heckle::Heckler::MUTATABLE_NODES
     @method_heckled ||= 'uses_many_things'
 
     @heckler = TestHeckler.new(@klass, @method_heckled, @nodes)

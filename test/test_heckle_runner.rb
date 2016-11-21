@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require 'heckle_runner'
+require 'heckle/heckle_runner'
 
 # Tests needed:
 # * if no method, loads all local methods
@@ -34,7 +34,7 @@ class TestHeckleRunnerRun < Minitest::Test
   def test_run_with_full_coverage
     result = nil
     out, _ = capture_io do
-      result = HeckleRunner.run %w[Doubler double]
+      result = Heckle::HeckleRunner.run %w[Doubler double]
     end
 
     assert result
@@ -44,7 +44,7 @@ class TestHeckleRunnerRun < Minitest::Test
   def test_run_with_partial_coverage
     result = true
     out, _ = capture_io do
-     result = HeckleRunner.run %w[Doubler double --tests test/test_doubler_with_a_number.rb]
+     result = Heckle::HeckleRunner.run %w[Doubler double --tests test/test_doubler_with_a_number.rb]
     end
 
     refute result
