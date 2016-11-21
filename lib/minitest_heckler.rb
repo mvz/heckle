@@ -1,3 +1,5 @@
+require 'minitest'
+
 class MiniTestHeckler < Heckle
   def initialize(class_or_module, method, options)
     Dir.glob(options[:test_pattern]).each {|t| load File.expand_path(t) }
