@@ -37,7 +37,7 @@ class TestHeckleRunnerRun < Minitest::Test
       result = Heckle::HeckleRunner.run %w[Doubler double]
     end
 
-    assert result
+    assert_equal result, 0
     assert_match %r{No mutants survived.}, out
   end
 
@@ -47,7 +47,7 @@ class TestHeckleRunnerRun < Minitest::Test
      result = Heckle::HeckleRunner.run %w[Doubler double --tests test/test_doubler_with_a_number.rb]
     end
 
-    refute result
+    assert_equal result, 1
     assert_match %r{The following mutations didn't cause test failures:}, out
     refute_match %{No mutants survived.}, out
   end

@@ -16,6 +16,7 @@ end
 
 module Heckle
   class Timeout < Timeout::Error; end
+  class InfiniteLoopDetected < StandardError; end
 
   class Heckler < SexpProcessor
 
@@ -704,7 +705,7 @@ module Heckle
         puts "Infinite loop detected!"
         puts "Please save this output to an attachment and submit a ticket here:"
         puts "http://rubyforge.org/tracker/?func=add&group_id=1513&atid=5921"
-        exit 1
+        raise Heckle::InfiniteLoopDetected
       else
         @last_mutations_left = sum
       end

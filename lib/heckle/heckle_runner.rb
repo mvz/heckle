@@ -110,7 +110,12 @@ module Heckle
     end
 
     def run
-      heckler.new(@class_or_module, @method, @options).validate
+      result = begin
+                 heckler.new(@class_or_module, @method, @options).validate
+               rescue InfiniteLoopDetected
+                 false
+               end
+      result ? 0 : 1
     end
   end
 end
