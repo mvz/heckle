@@ -690,7 +690,7 @@ module Heckle
       @last_mutations_left ||= -1
 
       sum = 0
-      @mutatees.each { |mut| sum += mut.last.size }
+      @mutatees.each_value { |mut| sum += mut.size }
 
       if sum == @last_mutations_left then
         puts 'bug!'
