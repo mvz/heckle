@@ -97,7 +97,7 @@ module Heckle
     end
 
     ##
-    # Creates a new Heckle that will heckle +klass_name+ and +method_name+,
+    # Creates a new Heckler that will heckle +klass_name+ and +method_name+,
     # sending results to +reporter+.
 
     def initialize(klass_name = nil, method_name = nil,
