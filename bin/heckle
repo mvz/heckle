@@ -3,6 +3,6 @@
 $LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
 $LOAD_PATH << 'lib'
 
-require 'heckle_runner'
+require 'heckle/heckle_runner'
 
-exit HeckleRunner.run
+exit Heckle::HeckleRunner.run
