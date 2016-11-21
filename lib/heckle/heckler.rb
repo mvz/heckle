@@ -753,36 +753,6 @@ module Heckle
       min..max
     end
 
-    ##
-    # Suppresses output on $stdout and $stderr.
-
-    def silence_stream
-      return yield if @@debug
-
-      begin
-        dead = File.open("/dev/null", "w")
-
-        $stdout.flush
-        $stderr.flush
-
-        oldstdout = $stdout.dup
-        oldstderr = $stderr.dup
-
-        $stdout.reopen(dead)
-        $stderr.reopen(dead)
-
-        result = yield
-
-      ensure
-        $stdout.flush
-        $stderr.flush
-
-        $stdout.reopen(oldstdout)
-        $stderr.reopen(oldstderr)
-        result
-      end
-    end
-
     class Reporter
       def no_mutations(method_name)
         warning "#{method_name} has a thick skin. There's nothing to heckle."
