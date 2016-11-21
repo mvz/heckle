@@ -577,7 +577,7 @@ module Heckle
         end
 
         if nesting.empty?
-          return sexp if method_name.nil?
+          return node if method_name.nil?
 
           m = find_method block
 

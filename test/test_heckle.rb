@@ -29,7 +29,6 @@ class HeckleTestCase < Minitest::Test
   def setup
     @klass ||= "HeckleDummy"
     @nodes ||= Heckle::Heckler::MUTATABLE_NODES
-    @method_heckled ||= 'uses_many_things'
 
     @heckler = TestHeckler.new(@klass, @method_heckled, @nodes)
   end
@@ -60,6 +59,11 @@ class HeckleTestCase < Minitest::Test
 end
 
 class TestHeckle < HeckleTestCase
+  def setup
+    @method_heckled = 'uses_many_things'
+    super
+  end
+
   def test_should_set_original_tree
     expected = s(:defn, :uses_many_things,
                  s(:args),
@@ -884,6 +888,22 @@ class TestHeckleFindsNestedClassAndModule < HeckleTestCase
     expected =  s(:defn, :foo,
                   s(:args),
                   s(:lit, 1337))
+
+    assert_equal expected, @heckler.current_tree
+  end
+end
+
+
+class TestHeckleFindsClassAndModule < HeckleTestCase
+  def setup
+    @klass = "HeckleDummy::OuterNesting::InnerNesting::InnerClass"
+    @nodes = []
+    super
+  end
+
+  def test_correct_original_tree
+    expected = s(:class, :InnerClass, nil,
+                 s(:defn, :bar, s(:args), s(:lit, -1)))
 
     assert_equal expected, @heckler.current_tree
   end
