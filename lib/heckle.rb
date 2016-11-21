@@ -236,13 +236,12 @@ class Heckle < SexpProcessor
   def process_call(exp)
     recv = process(exp.shift)
     meth = exp.shift
-    args = process(exp.shift)
-
-    if args.nil?
-      mutate_node s(:call, recv, meth)
-    else
-      mutate_node s(:call, recv, meth, args)
+    node = s(:call, recv, meth)
+    until exp.empty?
+      node << process(exp.shift)
     end
+
+    mutate_node node
   end
 
   ##
