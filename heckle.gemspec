@@ -24,6 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "ruby2ruby", "~> 2.3.1"
   spec.add_development_dependency "bundler", "~> 1.13"
   spec.add_development_dependency "minitest", "~> 5.9"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rake", "~> 12.3"
   spec.add_development_dependency "rdoc", "~> 5.0"
 end
