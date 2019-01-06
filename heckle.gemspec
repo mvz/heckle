@@ -20,10 +20,10 @@ Gem::Specification.new do |spec|
   spec.executables   = ["heckle"]
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "ruby_parser", "~> 3.8.3"
-  spec.add_runtime_dependency "ruby2ruby", "~> 2.3.1"
+  spec.add_runtime_dependency "ruby_parser", "~> 3.12.0"
+  spec.add_runtime_dependency "ruby2ruby", "~> 2.4.1"
   spec.add_development_dependency "bundler", "~> 1.13"
   spec.add_development_dependency "minitest", "~> 5.9"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rdoc", "~> 5.0"
+  spec.add_development_dependency "rake", "~> 12.3"
+  spec.add_development_dependency "rdoc", "~> 6.1"
 end
